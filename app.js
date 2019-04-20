@@ -45,7 +45,7 @@ app.use(function(err, req, res, next) {
 //connect to deployed db or local db
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 
 module.exports = app;

@@ -9,7 +9,7 @@ a {
   color: orange !important;
 }
 .space-around-content {
-  margin-left: 300px;
+  margin-left: auto;
   margin-top: 20px;
 }
 .hero-image {
@@ -23,13 +23,16 @@ a {
   background-size: cover;
   position: relative;
   }
+  .modal-input {
+    width: 100%;
+  }
   
   .hero-text {
   text-align: center;
   position: absolute;
   font-size: 5em;
   top: 50%;
-  left: 50%;
+  left: 43%;
   transform: translate(-50%, -50%);
   color: white;
   }
