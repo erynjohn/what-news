@@ -15,6 +15,9 @@ var newsSchema = new Schema({
         type: String,
         require: true
     },
+    img: {
+        type: String
+    },
     comments: {
         type: Schema.Types.ObjectId,
         ref: "comments"

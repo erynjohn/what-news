@@ -17,23 +17,23 @@ router.get('/get-news', function (req, res, next) {
   axios.get("https://www.nytimes.com/section/technology")
     .then(function (response) {
       var $ = cheerio.load(response.data);
-      //get headline element
-      $(".css-l2vidh").each(function (i, elem) {
+      // loop over articles
+      $('.css-1i4ie59').each(function(i, element) {
         var result = {};
-        //save response to result
-        result.headline = $(this).children("a").text();
-        result.url = $(this).children("a").attr("href");
-
+        result.img = $(this).find('img').attr('src');
+        result.headline = $(this).find('a').text();
+        result.url = 'https://www.nytimes.com/';
+        result.url = 'https://www.nytimes.com'+$(this).find('a').attr('href');
         //create new article
         db.news.create(result)
           .then(function (dbnews) {
             console.log(dbnews);
           })
           .catch(function (err) { throw err })
+          res.render('index', { title: 'Newses News', dbnews });
       });
 
     });
-  res.render('index', { title: 'Newses News' });
 
 });
 //displays news from nytime
