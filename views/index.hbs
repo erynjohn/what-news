@@ -1,2 +1,16 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+{{> hero}}
+<div class="space-around-content">
+{{#each dbnews}}
+
+<div class="container">
+  <div class="row">
+    <div class="col-9">
+        <img src={{this.img}} >
+        <a href={{this.url}}>{{this.url}}</a>
+        <h3>{{this.headline}}</h3>
+    </div>
+  </div>
+</div>
+
+{{/each}}
+</div>
