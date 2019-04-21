@@ -18,11 +18,11 @@ router.get('/get-news', function (req, res, next) {
         result.img = $(this).find('img').attr('src');
         result.headline = $(this).find('a').text();
         result.url = 'https://www.nytimes.com'+$(this).find('a').attr('href');
-        articleArr.push(articleArr);
+
+        articleArr.push(result);
         //create news articles
-        db.news.create(result)
+        db.news.create(articleArr)
         .then(function (dbnews) {
-          console.log(dbnews);
           res.redirect("/");
           })
           .catch(function (err) { 
@@ -38,6 +38,7 @@ router.get("/", function (req, res, next) {
   db.news.find({})
     .then(function (dbnews) {
       res.render('index', {dbnews: dbnews});
+      console.log(dbnews)
 
     })
     .catch(function (err) { throw err });
@@ -52,9 +53,9 @@ router.get("/api/news", ((req, res, next) => {
   .catch((err) => { throw err })
   
 }))
-router.get('news/:id', ((req, res) => {
+router.get('/api/news/:id', ((req, res) => {
   db.news.findOne({_id: req.params.id })
-  .populate("comments")
+ .populate("comments")
   .then(function(dbnews) {
     res.json(dbnews);
   })
@@ -62,17 +63,19 @@ router.get('news/:id', ((req, res) => {
     res.json(err); 
   });
 }));
-router.post("/news/:id", ((req, res) => {
+router.post("/api/news/:id", ((req, res) => {
   console.log(req.body)
   db.comments.create(req.body)
   .then(function(dbcomments) {
     return db.news.findOneAndUpdate({_id: req.params.id },
-      { comments: dbcomments._id },
+      { comments: dbcomments._id,
+       },
       {new: true }
       );
+
   })
   .then(function(dbnews) {
-    res.redirect("/")
+    res.redirect("/");
   })
   .catch(function(err) { throw err });
 }));
