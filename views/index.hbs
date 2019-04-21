@@ -10,7 +10,7 @@
         <a href={{this.url}}>{{this.url}}</a>
         <h3>{{this.headline}}</h3>
 
-        <button class="btn comment-btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse"
+        <button data-id="{{this._id}}" class="btn comment-btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse"
           aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Comments +</button>
 
   
@@ -18,7 +18,7 @@
           <div class="col">
             <div class="collapse multi-collapse" id="multiCollapseExample1">
               <div class="card card-body">
-                <p>{{comments}}</p>
+                {{> comment }}
               </div>
             </div>
           </div>

@@ -53,6 +53,14 @@ router.get("/api/news", ((req, res, next) => {
   .catch((err) => { throw err })
   
 }))
+
+router.get('/api/comment', ((req, res) => {
+  db.comments.find({})
+  .populate('comments')
+  .then(function(dbcomments) {
+    res.json(dbcomments)
+  })
+}))
 router.get('/api/news/:id', ((req, res) => {
   db.news.findOne({_id: req.params.id })
  .populate("comments")
