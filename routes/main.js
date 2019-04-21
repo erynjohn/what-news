@@ -28,7 +28,7 @@ router.get('/get-news', function (req, res, next) {
           .catch(function (err) { 
             if(err.code == 11000) {
               res.redirect("/");
-            } else { next(err); }
+            }
           });
         });
     });

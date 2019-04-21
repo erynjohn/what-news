@@ -16,7 +16,7 @@ a {
 
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/93825-004-A21EC811.jpg");
   
-  height: 20%;
+  height: 30%;
   
   background-position: center;
   background-repeat: no-repeat;
@@ -30,13 +30,24 @@ a {
   .hero-text {
   text-align: center;
   position: absolute;
-  font-size: 5em;
+  font-size: 4em;
   top: 50%;
   left: 43%;
   transform: translate(-50%, -50%);
   color: white;
   }
+  .get-news-btn {
+    color: orange;
+    background-color: rgba(255, 255, 255, 0.712);
+    font-size: 0.5em;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 3px;
+  }
   .tech-title {
     text-align: center;
     font-size: 3em;
+  }
+  .img-news {
+    border-radius: 10px;
   }
