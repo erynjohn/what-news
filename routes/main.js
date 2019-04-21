@@ -52,7 +52,30 @@ router.get("/api/news", ((req, res, next) => {
   .catch((err) => { throw err })
   
 }))
-
+router.get('news/:id', ((req, res) => {
+  db.news.findOne({_id: req.params.id })
+  .populate("comments")
+  .then(function(dbnews) {
+    res.json(dbnews);
+  })
+  .catch(function(err) { 
+    res.json(err); 
+  });
+}));
+router.post("/news/:id", ((req, res) => {
+  console.log(req.body)
+  db.comments.create(req.body)
+  .then(function(dbcomments) {
+    return db.news.findOneAndUpdate({_id: req.params.id },
+      { comments: dbcomments._id },
+      {new: true }
+      );
+  })
+  .then(function(dbnews) {
+    res.redirect("/")
+  })
+  .catch(function(err) { throw err });
+}));
 
 
 module.exports = router;

@@ -9,8 +9,8 @@ a {
   color: orange !important;
 }
 .space-around-content {
-  margin-left: auto;
-  margin-top: 20px;
+  margin-left: 22%;
+  margin-top: 30px;
 }
 .hero-image {
 
@@ -32,7 +32,7 @@ a {
   position: absolute;
   font-size: 4em;
   top: 50%;
-  left: 43%;
+  left: 52%;
   transform: translate(-50%, -50%);
   color: white;
   }
@@ -42,7 +42,7 @@ a {
     font-size: 0.5em;
     margin-bottom: 10px;
     border-radius: 10px;
-    padding: 3px;
+    padding: 10px;
   }
   .tech-title {
     text-align: center;
@@ -50,4 +50,7 @@ a {
   }
   .img-news {
     border-radius: 10px;
+  }
+  .col-9 {
+    padding: 10px;
   }
