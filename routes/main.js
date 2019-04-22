@@ -2,7 +2,7 @@ var express = require('express');
 var axios = require('axios');
 var cheerio = require('cheerio');
 
-var db = require("../models");
+var db = require("../models/");
 
 var router = express.Router();
 
@@ -54,39 +54,26 @@ router.get("/api/news", ((req, res, next) => {
   
 }))
 
-router.get('/api/comment', ((req, res) => {
-  db.comments.find({})
-  .populate('comments')
-  .then(function(dbcomments) {
-    res.json(dbcomments)
+router.get("/api/news/:id", ((req, res) => {
+  db.news.findOne({_id: req.params.id})
+  .populate("comments")
+  .exec(function(err, dbnews) {
+    if(err) { throw err }
+    else { 
+      res.json(dbnews);
+
+    }
   })
-}))
-router.get('/api/news/:id', ((req, res) => {
-  db.news.findOne({_id: req.params.id })
- .populate("comments")
-  .then(function(dbnews) {
-    res.json(dbnews);
-  })
-  .catch(function(err) { 
-    res.json(err); 
-  });
 }));
 router.post("/api/news/:id", ((req, res) => {
-  console.log(req.body)
   db.comments.create(req.body)
   .then(function(dbcomments) {
-    return db.news.findOneAndUpdate({_id: req.params.id },
-      { comments: dbcomments._id,
-       },
-      {new: true }
-      );
-
+    res.json(dbcomments)
+    console.log(dbcomments)
+    return db.news.findOneAndUpdate({_id: req.params.id}, {comments: dbcomments._id}, {new: true})
   })
-  .then(function(dbnews) {
-    res.redirect("/");
-  })
-  .catch(function(err) { throw err });
+  .then(function(dbnews) { res.json(dbnews)})
+  .catch(function(err) { res.json(err) });
 }));
-
 
 module.exports = router;

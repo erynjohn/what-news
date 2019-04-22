@@ -1,8 +1,8 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-var newsSchema = new Schema({
+const newsSchema = new Schema({
     headline: {
         type: String,
         require: true,
@@ -20,10 +20,10 @@ var newsSchema = new Schema({
     img: {
         type: String
     },
-    comments: {
+    comments: [{
         type: Schema.Types.ObjectId,
         ref: "comments"
-    }
+    }]
 });
 var news = mongoose.model("news", newsSchema);
 

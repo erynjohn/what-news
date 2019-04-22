@@ -10,6 +10,9 @@ var commentsSchema = new Schema({
     body: {
         type: String,
         require: true
+    },
+    news: {
+        type: Schema.Types.ObjectId, ref: "news"
     }
 });
 var comments = mongoose.model("comments", commentsSchema);
