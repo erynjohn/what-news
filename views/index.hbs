@@ -6,19 +6,13 @@
   <div class="container">
     <div class="row">
       <div class="col-9">
-        <img class="img-news" src={{this.img}}>
+        <img style="width: 400px" class="img-news" src={{this.img}}>
         <a href={{this.url}}>{{this.url}}</a>
-        <h3>{{this.headline}}</h3>
-
-        <button data-id="{{this._id}}" class="btn comment-btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse"
-          aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Comments +</button>
-
-  
+        <p>{{this.headline}}</p>
         <div class="row">
           <div class="col">
             <div class="collapse multi-collapse" id="multiCollapseExample1">
               <div class="card card-body">
-                {{> comment }}
               </div>
             </div>
           </div>
@@ -48,14 +42,14 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn add-notes-btn btn-primary" data-id="{{this._id}}">Post</button>
+                  <button type="submit" class="btn add-note btn-primary">Post</button>
                 </div>
               </div>
             </div>
           </div>
 
         </form>
-        <button data-id="{{this._id}}" type="button" class="btn btn-primary" data-toggle="modal"
+        <button data-id="{{this._id}}" id="exampleModal" "type="button" class="btn btn-primary" data-toggle="modal"
           data-target="#exampleModal">Add Note</button>
       </div>
     </div>

@@ -1,12 +1,7 @@
-// $(document).on("click", ".comment-btn", function() {
-//     var thisId = $(this).attr("data-id");
+$('#exampleModal').on('show.bs.modal', function (e) {
 
-//     $.ajax({
-//         type: "GET",
-//         url: "/api/news/"+thisId,
-//         success: function (response) {
-//             console.log(response);
-            
-//         }
-//     });
-// })
+    var dataId = $(e.relatedTarget).attr('data-id');
+    $('.add-note').attr('data-id', dataId);
+    $(this).find('#commentIdSpan').text(dataId);
+
+})

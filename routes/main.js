@@ -47,23 +47,37 @@ router.get("/", function (req, res, next) {
 //Render API
 router.get("/api/news", ((req, res, next) => {
   db.news.find({})
-  .then(((dbnews) => { 
-    res.json(dbnews)
-  }))
-  .catch((err) => { throw err })
-  
+  .populate("comments")
+  .exec(((err, dbnews) => {
+    if(err) {
+      res.status(500).json(err)
+    } else {
+      res.status(200).json(dbnews)
+    }
+  }));
+}));
+
+router.get("/api/comments", ((req, res, next) => {
+  comments.find({})
+  .exec((err, dbcomments) => {
+    if(err) {
+      res.status(500).json(err)
+    } else {
+      res.status(200).json(dbcomments)
+    }
+  })
 }))
 
 router.get("/api/news/:id", ((req, res) => {
-  db.news.findOne({_id: req.params.id})
+  db.news.findOne({"_id": req.params.id})
   .populate("comments")
-  .exec(function(err, dbnews) {
-    if(err) { throw err }
-    else { 
-      res.json(dbnews);
-
+  .exec((err, dbnews) => {
+    if(err) {
+      res.status(500).json(err)
+    } else {
+      res.status(200).json(dbnews)
     }
-  })
+  });
 }));
 router.post("/api/news/:id", ((req, res) => {
   db.comments.create(req.body)
