@@ -84,7 +84,18 @@ router.post("/api/news/:id", ((req, res) => {
   .then(function(dbcomments) {
     res.json(dbcomments)
     console.log(dbcomments)
-    return db.news.findOneAndUpdate({_id: req.params.id}, {comments: dbcomments._id}, {new: true})
+    return db.news.findOneAndUpdate({_id: req.params.id},{$push:{comments: dbcomments._id}}, {new: true})
+  })
+  .then(function(dbnews) { res.json(dbnews)})
+  .catch(function(err) { res.json(err) });
+}));
+
+router.post("/api/delete/:id", ((req, res) => {
+  db.comments.findByIdAndDelete(req.body._id)
+  .then(function(dbcomments) {
+    res.json(dbcomments)
+    console.log(dbcomments)
+    return db.news.findOneAndUpdate({_id: req.params.id},{$push:{comments: dbcomments._id}}, {new: true})
   })
   .then(function(dbnews) { res.json(dbnews)})
   .catch(function(err) { res.json(err) });

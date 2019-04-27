@@ -19,7 +19,7 @@
         </div>
 
         <!-- Modal for adding comments -->
-        <form action="/api/news/{{this._id}}" method="POST">
+        <form action="/api/news/" id="comment-form">
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -33,11 +33,11 @@
                 <div class="modal-body">
                   <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Your Name:</label>
-                    <input type="text" class="form-control" id="recipient-name" name="name">
+                    <input type="text" class="form-control name" id="recipient-name" name="name">
                   </div>
                   <div class="form-group">
                     <label for="message-text" class="col-form-label">Comment:</label>
-                    <textarea class="form-control" id="message-text" name="body"></textarea>
+                    <textarea class="form-control body" id="message-text" name="body"></textarea>
                   </div>
                 </div>
                 <div class="modal-footer">
@@ -49,8 +49,20 @@
           </div>
 
         </form>
-        <button data-id="{{this._id}}" id="exampleModal" "type="button" class="btn btn-primary" data-toggle="modal"
+        <button class="add-note-target" data-id="{{this._id}}" id="exampleModal" "type="button" class="btn btn-primary" data-toggle="modal"
           data-target="#exampleModal">Add Note</button>
+
+          <div class="card">
+  <div class="card-header">
+    Featured Comments
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+    <p class="card-text"></p>
+    <a href="/api/delete/" class="btn btn-primary">Remove</a>
+  </div>
+</div>
+
       </div>
     </div>
   </div>
